@@ -10,6 +10,7 @@ function App() {
 
   return (
     <>
+      <h1>💫TODO-LIST✨</h1>
       <TodoList todoList={todoList} setTodoList={setTodoList} />
       <hr />
       <TodoInput todoList={todoList} setTodoList={setTodoList} />
@@ -22,7 +23,7 @@ function TodoInput({ todoList, setTodoList }) {
 
   return (
     <>
-      <input
+      <input className="ip1"
         value={inputValue}
         onChange={(event) => setInputValue(event.target.value)}
       />
@@ -54,6 +55,7 @@ function Todo({ todo, setTodoList }) {
   const [inputValue, setInputValue] = useState("");
   return (
     <li>
+      <input type="checkbox" />
       {todo.content}
       <input
         value={inputValue}
@@ -64,8 +66,9 @@ function Todo({ todo, setTodoList }) {
           setTodoList((prev) =>
             prev.map((el) =>
               el.id === todo.id ? { ...el, content: inputValue } : el
-            )
+            )       
           );
+          setInputValue('')
         }}
       >
         수정
@@ -75,10 +78,12 @@ function Todo({ todo, setTodoList }) {
           setTodoList((prev) => {
             return prev.filter((el) => el.id !== todo.id);
           });
+          
         }}
       >
         삭제
       </button>
+      
     </li>
   );
 }
